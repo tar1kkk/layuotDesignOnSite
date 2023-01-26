@@ -18,6 +18,9 @@ ul {
 body {
 	font-family: "Work Sans", sans-serif;
 	background-color: var(--bg-color);
+	&._lock{
+		overflow: hidden;
+	}
 }
 
 [class*="__container"] {
@@ -45,18 +48,17 @@ body {
 .header__navigation {
 	display: flex;
 	align-items: center;
-	gap: clamp(1.25rem, -2.799rem + 8.44vw, 4.688rem);
+	gap: 75px;
 }
-.header__menu {
-}
-.menu {
-}
+
 .menu__body {
 	display: flex;
 	align-items: center;
 	gap: 40px;
-}
-.menu__item {
+	@media (max-width : 992px) {
+		flex-direction: column;
+		margin: auto;
+	}
 }
 .menu__link {
 	font-weight: 500;
@@ -88,6 +90,10 @@ body {
 			}
 		}
 	}
+	@media (max-width : 992px) {
+		line-height: 50px;
+		font-size: 30px;
+	}
 }
 .header__buttons {
 	display: flex;
@@ -99,6 +105,9 @@ body {
 			background-color: var(--accent-color);
 		}
 	}
+	@media (max-width : 420px) {
+		display: none;
+	}
 }
 .header__btn {
 	padding: 11px 20px;
@@ -107,6 +116,9 @@ body {
 	background-color: transparent;
 	transition: background-color 0.2s;
 	cursor: pointer;
+	@media (max-width : 576px) {
+		padding: 7px 15px;
+	}
 }
 .register {
 	background-color: var(--accent-color);
@@ -117,41 +129,58 @@ body {
 	}
 }
 
-.menu-icon {
-	display: none;
+.menu {
 	@media (max-width : 992px) {
-		display: block;
-		height: 18px;
-		width: 30px;
-		position: relative;
-		cursor: pointer;
-		z-index: 5;
-		span {
-			transition: all .3 ease 0s;
-			top: calc(50% - 1px);
-			left: 0;
-			position: absolute;
-			width: 100%;
-			height: 2px;
-			background-color: #fff;
-			&:first-child {
-				top: 0;
-			}
-			&:last-child{
-				top: auto;
-				bottom: 0;
-			}
-		}
+		position: absolute;
+		top: 0;
+		left: -100%;
+		height: 100vh;
+		display: flex;
+		width: 80%;
+		background-color: var(--accent-color);
+		overflow: auto;
+		padding: 20px 0;
+		transition: left .2s;
 		&._active {
+			left: 0;
+		}
+	}
+	&-icon {
+		display: none;
+		@media (max-width : 992px) {
+			display: block;
+			height: 18px;
+			width: 30px;
+			position: relative;
+			cursor: pointer;
+			z-index: 5;
 			span {
-				transform: scale(0);
+				transition: all .3 ease 0s;
+				top: calc(50% - 1px);
+				left: 0;
+				position: absolute;
+				width: 100%;
+				height: 2px;
+				background-color: #fff;
 				&:first-child {
-					transform: rotate(-45deg);
-					top: calc(50% - 1px);
+					top: 0;
 				}
 				&:last-child{
-					transform: rotate(45deg);
-					bottom: calc(50% - 1px);
+					top: auto;
+					bottom: 0;
+				}
+			}
+			&._active {
+				span {
+					transform: scale(0);
+					&:first-child {
+						transform: rotate(-45deg);
+						top: calc(50% - 1px);
+					}
+					&:last-child{
+						transform: rotate(45deg);
+						bottom: calc(50% - 1px);
+					}
 				}
 			}
 		}

@@ -11,14 +11,18 @@ ul {
 }
 
 :root {
-  --bg-color: #121B25;
-  --accent-color: #1AA090;
+  --bg-color: #121b25;
+  --accent-color: #1aa090;
   --text-color: #d6d6d6;
 }
 
 body {
-  font-family: 'Work Sans',sans-serif;
+  font-family: "Work Sans", sans-serif;
   background-color: var(--bg-color);
+}
+
+body._lock {
+  overflow: hidden;
 }
 
 [class*="__container"] {
@@ -72,6 +76,16 @@ body {
   gap: 40px;
 }
 
+@media (max-width: 992px) {
+  .menu__body {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    margin: auto;
+  }
+}
+
 .menu__link {
   font-weight: 500;
   font-size: 16px;
@@ -79,13 +93,13 @@ body {
   text-transform: capitalize;
   color: var(--text-color);
   text-decoration: none;
-  -webkit-transition: color .2s;
-  transition: color .2s;
+  -webkit-transition: color 0.2s;
+  transition: color 0.2s;
   position: relative;
 }
 
 .menu__link:before {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -5px;
   left: 0;
@@ -94,8 +108,8 @@ body {
   height: 3px;
   opacity: 0;
   visibility: hidden;
-  -webkit-transform: opacity .2s;
-          transform: opacity .2s;
+  -webkit-transform: opacity 0.2s;
+          transform: opacity 0.2s;
 }
 
 @media (any-hover: hover) {
@@ -105,6 +119,13 @@ body {
   .menu__link:hover:before {
     opacity: 1;
     visibility: visible;
+  }
+}
+
+@media (max-width: 992px) {
+  .menu__link {
+    line-height: 50px;
+    font-size: 30px;
   }
 }
 
@@ -121,14 +142,26 @@ body {
   }
 }
 
+@media (max-width: 420px) {
+  .login {
+    display: none;
+  }
+}
+
 .header__btn {
   padding: 11px 20px;
   color: #fff;
   border: 2px solid var(--accent-color);
   background-color: transparent;
-  -webkit-transition: background-color .2s;
-  transition: background-color .2s;
+  -webkit-transition: background-color 0.2s;
+  transition: background-color 0.2s;
   cursor: pointer;
+}
+
+@media (max-width: 576px) {
+  .header__btn {
+    padding: 7px 15px;
+  }
 }
 
 .register {
@@ -138,5 +171,72 @@ body {
 @media (any-hover: hover) {
   .register:hover {
     background-color: transparent;
+  }
+}
+
+@media (max-width: 992px) {
+  .menu {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    height: 100vh;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 80%;
+    background-color: var(--accent-color);
+    overflow: auto;
+    padding: 20px 0;
+    -webkit-transition: left .2s;
+    transition: left .2s;
+  }
+  .menu._active {
+    left: 0;
+  }
+}
+
+.menu-icon {
+  display: none;
+}
+
+@media (max-width: 992px) {
+  .menu-icon {
+    display: block;
+    height: 18px;
+    width: 30px;
+    position: relative;
+    cursor: pointer;
+    z-index: 5;
+  }
+  .menu-icon span {
+    -webkit-transition: all .3 ease 0s;
+    transition: all .3 ease 0s;
+    top: calc(50% - 1px);
+    left: 0;
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: #fff;
+  }
+  .menu-icon span:first-child {
+    top: 0;
+  }
+  .menu-icon span:last-child {
+    top: auto;
+    bottom: 0;
+  }
+  .menu-icon._active span {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  .menu-icon._active span:first-child {
+    -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+    top: calc(50% - 1px);
+  }
+  .menu-icon._active span:last-child {
+    -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+    bottom: calc(50% - 1px);
   }
 }
